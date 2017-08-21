@@ -782,7 +782,8 @@ abstract class Net_Gearman_Job
 
     static public function factory($job, $conn, $handle)
     {
-        $file = NET_GEARMAN_JOB_PATH . DIRECTORY_SEPARATOR . $job . '.php';
+		$path_to_job = realpath( dirname( __FILE__ ) . '/..' );
+        $file = $path_to_job . DIRECTORY_SEPARATOR . $job . '.php';
         include_once $file;
         $class = NET_GEARMAN_JOB_CLASS_PREFIX . $job;
         if (!class_exists($class)) {
